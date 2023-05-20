@@ -10,3 +10,5 @@ if __name__ == "__main__":
 
     for writing_desk in writing_desks:
         print(writing_desk)
+
+    str(writing_desks[2])
