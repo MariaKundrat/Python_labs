@@ -1,12 +1,18 @@
-class WritingDesk:
+from models.desk import Desk
+
+
+class WritingDesk(Desk):
     """
     A class for representing a writing desk.
 
           Attributes:
+              name (str): the name of the desk;
+              height (int): the height of the desk;
+              width (int): the width of the desk;
+              length (int): the length of the desk.
               number_of_drawers (int): number of desk drawers;
               has_keyboard_tray (str): whether the desk has a retractable keyboard tray;
               max_weight_capacity (int): the maximum weight that the table can support;
-              current_height (int): current desk height;
               max_height: the maximum permissible table height.
 
           Methods:
@@ -15,27 +21,37 @@ class WritingDesk:
               move_down(self, centimeters: int): method that reduces the height of the desk (it cannot be less than 0);
               __str__(self): returns a string representation of the WritingDesk object.
     """
-    __instance = None
 
     def __init__(
             self,
+            name: str = "Writing Desk unknown",
+            height: int = 0,
+            width: int = 0,
+            length: int = 0,
             number_of_drawers: int = 0,
             has_keyboard_tray: str = "Unknown",
             max_weight_capacity: int = 0,
-            current_height: int = 0,
-            max_height: int = 150
+            max_height: int = 0
     ):
+        """
+            Initializes a new instance of the WritingDesk class.
+
+            Arguments:
+            name (str): the name of the table;
+            height (int): the height of the table;
+            width (int): the width of the table;
+            length (int): the length of the table;
+            number_of_drawers (int): number of desk drawers;
+            has_keyboard_tray (str): whether the desk has a retractable keyboard tray;
+            max_weight_capacity (int): the maximum weight that the table can support;
+            current_height (int): current desk height;
+            max_height (int): the maximum permissible table height.
+        """
+        super().__init__(name, height, width, length)
         self.number_of_drawers = number_of_drawers
         self.has_keyboard_tray = has_keyboard_tray
         self.max_weight_capacity = max_weight_capacity
-        self.current_height = current_height
         self.max_height = max_height
-
-    @classmethod
-    def get_instance(cls):
-        if cls.__instance is None:
-            cls.__instance = cls()
-        return cls.__instance
 
     def adjust_height(self, centimeters: int):
         """
@@ -43,8 +59,8 @@ class WritingDesk:
             Arguments:
                 centimeters (int): the height by which the current desk height is increased.
         """
-        if self.current_height + centimeters <= self.max_height:
-            self.current_height += centimeters
+        if self.height + centimeters <= self.max_height:
+            self.height += centimeters
 
     def move_down(self, centimeters: int):
         """
@@ -52,10 +68,10 @@ class WritingDesk:
            Arguments:
                centimeters (int): the height by which the current table height is reduced.
         """
-        if self.current_height - centimeters >= 0:
-            self.current_height -= centimeters
+        if self.height - centimeters >= 0:
+            self.height -= centimeters
 
     def __str__(self):
-        return f"WritingDesk(number_of_drawers={self.number_of_drawers}, " \
-               f"has_keyboard_tray={self.has_keyboard_tray}, max_weight_capacity={self.max_weight_capacity}, " \
-               f"current_height={self.current_height}, max_height={self.max_height})"
+        return f"WritingDesk(name={self.name}, height={self.height}, width={self.width}, length={self.length}, " \
+               f"number_of_drawers={self.number_of_drawers}, has_keyboard_tray={self.has_keyboard_tray}, " \
+               f"max_weight_capacity={self.max_weight_capacity}, max_height={self.max_height})"
