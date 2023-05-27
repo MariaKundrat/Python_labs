@@ -1,3 +1,4 @@
+"""Import all models"""
 from models.writing_desk import WritingDesk
 from models.coffee_table import CoffeeTable
 from models.computer_desk import ComputerDesk

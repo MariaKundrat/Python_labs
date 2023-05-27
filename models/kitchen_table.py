@@ -1,3 +1,4 @@
+"""Import abstract class"""
 from models.desk import Desk
 
 
@@ -14,9 +15,10 @@ class KitchenTable(Desk):
         max_height (int): the maximum permissible table height.
 
         Methods:
-        adjust_height(self, centimeters: int): method that increases the height of the desk (if it does not
-        exceed the maximum allowed);
-        move_down(self, centimeters: int): method that reduces the height of the desk (it cannot be less than 0);
+        adjust_height(self, centimeters: int): method that increases the height
+        of the desk (if it does not exceed the maximum allowed);
+        move_down(self, centimeters: int): method that reduces the height of the
+        desk (it cannot be less than 0);
         __str__(self): returns a string representation of the KitchenTable object.
     """
 
@@ -47,7 +49,8 @@ class KitchenTable(Desk):
         """
             Increases the height of the desk (if it does not exceed the maximum allowed).
                 Arguments:
-                    centimeters (int): the height by which the current desk height is increased.
+                    centimeters (int): the height by which the current desk height
+                    is increased.
         """
         if self.height + centimeters <= self.max_height:
             self.height += centimeters
@@ -56,11 +59,12 @@ class KitchenTable(Desk):
         """
             Reduces the height of the desk (it cannot be less than 0).
                 Arguments:
-                    centimeters (int): the height by which the current table height is reduced.
+                    centimeters (int): the height by which the current table height is
+                    reduced.
         """
         if self.height - centimeters >= 0:
             self.height -= centimeters
 
     def __str__(self):
-        return f"KitchenTable(name={self.name}, height={self.height}, width={self.width}, length={self.length}, " \
-               f"material={self.material}, max_height={self.max_height})"
+        return f"KitchenTable(name={self.name}, height={self.height}, width={self.width}," \
+               f" length={self.length}, material={self.material}, max_height={self.max_height})"

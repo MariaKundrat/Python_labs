@@ -1,3 +1,4 @@
+"""Import abstract class"""
 from models.desk import Desk
 
 
@@ -7,9 +8,10 @@ class DeskManager:
 
          Methods:
              add_desk(desk: Desk): adds a desk to the list of desks.
-             find_all_tables_higher_than(value: int): finds all desks with a height greater than the given value.
-             find_all_with_length_greater_than(value: int): finds all desks with a length greater than the given
-             value.
+             find_all_tables_higher_than(value: int): finds all desks with a height greater than the
+             given value.
+             find_all_with_length_greater_than(value: int): finds all desks with a length greater
+             than the given value.
      """
 
     def __init__(self):

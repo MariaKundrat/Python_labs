@@ -1,3 +1,4 @@
+"""Import abstract class"""
 from models.desk import Desk
 
 
@@ -16,9 +17,10 @@ class WritingDesk(Desk):
               max_height: the maximum permissible table height.
 
           Methods:
-              adjust_height(self, centimeters: int): method that increases the height of the desk (if it does not
-              exceed the maximum allowed);
-              move_down(self, centimeters: int): method that reduces the height of the desk (it cannot be less than 0);
+              adjust_height(self, centimeters: int): method that increases the height of
+              the desk (if it does not exceed the maximum allowed);
+              move_down(self, centimeters: int): method that reduces the height of the desk
+              (it cannot be less than 0);
               __str__(self): returns a string representation of the WritingDesk object.
     """
 
@@ -72,6 +74,7 @@ class WritingDesk(Desk):
             self.height -= centimeters
 
     def __str__(self):
-        return f"WritingDesk(name={self.name}, height={self.height}, width={self.width}, length={self.length}, " \
-               f"number_of_drawers={self.number_of_drawers}, has_keyboard_tray={self.has_keyboard_tray}, " \
+        return f"WritingDesk(name={self.name}, height={self.height}, width={self.width}," \
+               f"length={self.length}, number_of_drawers={self.number_of_drawers}, " \
+               f"has_keyboard_tray={self.has_keyboard_tray}, " \
                f"max_weight_capacity={self.max_weight_capacity}, max_height={self.max_height})"

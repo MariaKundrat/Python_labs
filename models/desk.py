@@ -1,3 +1,4 @@
+"""Abstract Base Classes (ABC) module"""
 from abc import ABC, abstractmethod
 
 
@@ -12,8 +13,10 @@ class Desk(ABC):
         length (int): the length of the desk.
 
         Methods:
-        adjust_height(self, centimeters: int): an abstract method for increasing the height of the desk;
-        move_down(self, centimeters: int): an abstract method for reducing the height of the desk.
+        adjust_height(self, centimeters: int): an abstract method for increasing the
+        height of the desk;
+        move_down(self, centimeters: int): an abstract method for reducing the height
+        of the desk.
     """
 
     def __init__(self,
@@ -41,7 +44,8 @@ class Desk(ABC):
         """
            An abstract method for increasing the height of the desk.
                 Arguments:
-                    centimeters (int): the height by which to increase the current desk height.
+                    centimeters (int): the height by which to increase the current
+                    desk height.
         """
 
     @abstractmethod
@@ -49,5 +53,6 @@ class Desk(ABC):
         """
            An abstract method for reducing the height of the desk.
                 Arguments:
-                    centimeters (int): the height by which to reduce the current desk height.
+                    centimeters (int): the height by which to reduce the current
+                    desk height.
         """
