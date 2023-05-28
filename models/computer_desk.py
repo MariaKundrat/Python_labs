@@ -45,7 +45,7 @@ class ComputerDesk(Desk):
                keyboard tray;
                max_height (int): the maximum permissible table height.
           """
-        super().__init__(name, height, width, length)
+        super().__init__(name, height, width, length, desk_set={"brown", "gray"})
         self.number_of_drawers = number_of_drawers
         self.has_keyboard_tray = has_keyboard_tray
         self.max_height = max_height
@@ -59,6 +59,7 @@ class ComputerDesk(Desk):
         """
         if self.height + centimeters <= self.max_height:
             self.height += centimeters
+        return self.height
 
     def move_down(self, centimeters):
         """
@@ -69,8 +70,10 @@ class ComputerDesk(Desk):
         """
         if self.height - centimeters >= 0:
             self.height -= centimeters
+        return self.height
 
     def __str__(self):
         return f"ComputerDesk(name={self.name}, height={self.height}, width={self.width}," \
                f"length={self.length}, number_of_drawers={self.number_of_drawers}, " \
-               f"has_keyboard_tray={self.has_keyboard_tray}, max_height={self.max_height})"
+               f"has_keyboard_tray={self.has_keyboard_tray}, max_height={self.max_height}," \
+               f"desk_set={self.desk_set})"

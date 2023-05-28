@@ -41,11 +41,11 @@ class KitchenTable(Desk):
                 material (str): the material of the table;
                 max_height (int): the maximum permissible table height.
                 """
-        super().__init__(name, height, width, length)
+        super().__init__(name, height, width, length, desk_set={"black", "white"})
         self.material = material
         self.max_height = max_height
 
-    def adjust_height(self, centimeters):
+    def adjust_height(self, centimeters: int):
         """
             Increases the height of the desk (if it does not exceed the maximum allowed).
                 Arguments:
@@ -54,8 +54,9 @@ class KitchenTable(Desk):
         """
         if self.height + centimeters <= self.max_height:
             self.height += centimeters
+        return self.height
 
-    def move_down(self, centimeters):
+    def move_down(self, centimeters: int):
         """
             Reduces the height of the desk (it cannot be less than 0).
                 Arguments:
@@ -64,7 +65,9 @@ class KitchenTable(Desk):
         """
         if self.height - centimeters >= 0:
             self.height -= centimeters
+        return self.height
 
     def __str__(self):
         return f"KitchenTable(name={self.name}, height={self.height}, width={self.width}," \
-               f" length={self.length}, material={self.material}, max_height={self.max_height})"
+               f" length={self.length}, material={self.material}, max_height={self.max_height}" \
+               f"desk_set={self.desk_set})"

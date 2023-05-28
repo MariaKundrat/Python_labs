@@ -1,5 +1,6 @@
-"""Import abstract class"""
+"""Import abstract class and decorators"""
 from models.desk import Desk
+from decorators.decorators import log_result_to_file, log_call_count
 
 
 class CoffeeTable(Desk):
@@ -42,7 +43,7 @@ class CoffeeTable(Desk):
                 number_of_seats (int): the number of seats that can be placed
                 around the table.
         """
-        super().__init__(name, height, width, length)
+        super().__init__(name, height, width, length, desk_set={"brown", "gray"})
         self.number_of_shelves = number_of_shelves
         self.number_of_seats = number_of_seats
 
@@ -52,17 +53,23 @@ class CoffeeTable(Desk):
                 Arguments:
                     centimeters (int): ignored.
         """
-        print("You cannot increase the height of CoffeeTable")
+        message = "You cannot increase the height of CoffeeTable"
+        print(message)
+        return self.height
 
+    @log_result_to_file
+    @log_call_count("call_counts.txt")
     def move_down(self, centimeters):
         """
            Does not allow to change the height of the table.
                 Arguments:
                     centimeters (int): ignored.
         """
-        print("You cannot increase the height of CoffeeTable")
+        message = "You cannot increase the height of CoffeeTable"
+        print(message)
+        return self.height
 
     def __str__(self):
         return f"CoffeeTable(name={self.name}, height={self.height}, width={self.width}, " \
                f"length={self.length}, number_of_shelves={self.number_of_shelves}, " \
-               f"number_of_seats={self.number_of_seats})"
+               f"number_of_seats={self.number_of_seats}, desk_set={self.desk_set})"
