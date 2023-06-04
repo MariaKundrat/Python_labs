@@ -1,5 +1,6 @@
-"""Import abstract class"""
+"""Import abstract class and decorators"""
 from models.desk import Desk
+from decorators.decorators import log_result_to_file, log_call_count
 
 
 class WritingDesk(Desk):
@@ -14,7 +15,8 @@ class WritingDesk(Desk):
               number_of_drawers (int): number of desk drawers;
               has_keyboard_tray (str): whether the desk has a retractable keyboard tray;
               max_weight_capacity (int): the maximum weight that the table can support;
-              max_height: the maximum permissible table height.
+              max_height: the maximum permissible table height;
+              desk_set (set): a set of desk colors.
 
           Methods:
               adjust_height(self, centimeters: int): method that increases the height of
@@ -33,7 +35,8 @@ class WritingDesk(Desk):
             number_of_drawers: int = 0,
             has_keyboard_tray: str = "Unknown",
             max_weight_capacity: int = 0,
-            max_height: int = 0
+            max_height: int = 0,
+            desk_set: set = ("black", "white")
     ):
         """
             Initializes a new instance of the WritingDesk class.
@@ -47,9 +50,10 @@ class WritingDesk(Desk):
             has_keyboard_tray (str): whether the desk has a retractable keyboard tray;
             max_weight_capacity (int): the maximum weight that the table can support;
             current_height (int): current desk height;
-            max_height (int): the maximum permissible table height.
+            max_height (int): the maximum permissible table height;
+            desk_set (set): a set of desk colors.
         """
-        super().__init__(name, height, width, length)
+        super().__init__(name, height, width, length, desk_set)
         self.number_of_drawers = number_of_drawers
         self.has_keyboard_tray = has_keyboard_tray
         self.max_weight_capacity = max_weight_capacity
@@ -63,7 +67,10 @@ class WritingDesk(Desk):
         """
         if self.height + centimeters <= self.max_height:
             self.height += centimeters
+        return self.height
 
+    @log_result_to_file
+    @log_call_count("call_counts.txt")
     def move_down(self, centimeters: int):
         """
            Reduces the height of the desk (it cannot be less than 0).
@@ -72,9 +79,11 @@ class WritingDesk(Desk):
         """
         if self.height - centimeters >= 0:
             self.height -= centimeters
+        return self.height
 
     def __str__(self):
         return f"WritingDesk(name={self.name}, height={self.height}, width={self.width}," \
                f"length={self.length}, number_of_drawers={self.number_of_drawers}, " \
                f"has_keyboard_tray={self.has_keyboard_tray}, " \
-               f"max_weight_capacity={self.max_weight_capacity}, max_height={self.max_height})"
+               f"max_weight_capacity={self.max_weight_capacity}, max_height={self.max_height}," \
+               f"desk_set={self.desk_set})"
