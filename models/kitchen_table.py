@@ -72,5 +72,5 @@ class KitchenTable(Desk):
 
     def __str__(self):
         return f"KitchenTable(name={self.name}, height={self.height}, width={self.width}," \
-               f" length={self.length}, material={self.material}, max_height={self.max_height}" \
+               f" length={self.length}, material={self.material}, max_height={self.max_height}, " \
                f"desk_set={self.desk_set})"
