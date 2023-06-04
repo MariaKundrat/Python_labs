@@ -13,7 +13,8 @@ class ComputerDesk(Desk):
         length (int): the length of the desk.
         number_of_drawers (int): number of desk drawers;
         has_keyboard_tray (str): whether the desk has a retractable keyboard tray;
-        max_height (int): the maximum permissible table height.
+        max_height (int): the maximum permissible table height;
+        desk_set (set): a set of desk colors.
 
         Methods:
         adjust_height(self, centimeters: int): method that increases the height
@@ -30,7 +31,8 @@ class ComputerDesk(Desk):
                  length: int = 0,
                  number_of_drawers: int = 0,
                  has_keyboard_tray: str = "Unknown",
-                 max_height: int = 0
+                 max_height: int = 0,
+                 desk_set: set = ("brown", "gray")
                  ):
         """
           Initializes a new instance of the ComputerDesk class.
@@ -43,9 +45,10 @@ class ComputerDesk(Desk):
                number_of_drawers (int): number of desk drawers;
                has_keyboard_tray (str): whether the desk has a retractable
                keyboard tray;
-               max_height (int): the maximum permissible table height.
-          """
-        super().__init__(name, height, width, length, desk_set={"brown", "gray"})
+               max_height (int): the maximum permissible table height;
+               desk_set (set): a set of desk colors.
+        """
+        super().__init__(name, height, width, length, desk_set)
         self.number_of_drawers = number_of_drawers
         self.has_keyboard_tray = has_keyboard_tray
         self.max_height = max_height

@@ -50,14 +50,15 @@ class DeskSetManager:
                    Desk: the next desk set in the iteration.
         """
         if self.desk_set_index < len(self.desk_manager[self.desk_index].desk_set):
+            if self.desk_index >= len(self.desk_manager):
+                raise StopIteration
+
             item = list(self.desk_manager[self.desk_index].desk_set)[
                 self.desk_set_index
             ]
             self.desk_set_index += 1
             return item
         self.desk_index += 1
-        if self.desk_index >= len(self.desk_manager):
-            raise StopIteration
         self.desk_set_index = 0
         item = list(self.desk_manager[self.desk_index].desk_set)[
             self.desk_set_index

@@ -12,7 +12,8 @@ class KitchenTable(Desk):
         width (int): the width of the desk;
         length (int): the length of the desk.
         material (str): the material of the table;
-        max_height (int): the maximum permissible table height.
+        max_height (int): the maximum permissible table height;
+        desk_set (set): a set of desk colors.
 
         Methods:
         adjust_height(self, centimeters: int): method that increases the height
@@ -28,7 +29,8 @@ class KitchenTable(Desk):
                  width: int = 0,
                  length: int = 0,
                  material: str = "Unknown",
-                 max_height: int = 0
+                 max_height: int = 0,
+                 desk_set: set = ("black", "white")
                  ):
         """
             Initializes a new instance of the KitchenTable class.
@@ -39,9 +41,10 @@ class KitchenTable(Desk):
                 width (int): the width of the table;
                 length (int): the length of the table;
                 material (str): the material of the table;
-                max_height (int): the maximum permissible table height.
-                """
-        super().__init__(name, height, width, length, desk_set={"black", "white"})
+                max_height (int): the maximum permissible table height;
+                desk_set (set): a set of desk colors.
+        """
+        super().__init__(name, height, width, length, desk_set)
         self.material = material
         self.max_height = max_height
 

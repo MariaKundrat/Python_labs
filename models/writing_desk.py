@@ -15,7 +15,8 @@ class WritingDesk(Desk):
               number_of_drawers (int): number of desk drawers;
               has_keyboard_tray (str): whether the desk has a retractable keyboard tray;
               max_weight_capacity (int): the maximum weight that the table can support;
-              max_height: the maximum permissible table height.
+              max_height: the maximum permissible table height;
+              desk_set (set): a set of desk colors.
 
           Methods:
               adjust_height(self, centimeters: int): method that increases the height of
@@ -34,7 +35,8 @@ class WritingDesk(Desk):
             number_of_drawers: int = 0,
             has_keyboard_tray: str = "Unknown",
             max_weight_capacity: int = 0,
-            max_height: int = 0
+            max_height: int = 0,
+            desk_set: set = ("black", "white")
     ):
         """
             Initializes a new instance of the WritingDesk class.
@@ -48,9 +50,10 @@ class WritingDesk(Desk):
             has_keyboard_tray (str): whether the desk has a retractable keyboard tray;
             max_weight_capacity (int): the maximum weight that the table can support;
             current_height (int): current desk height;
-            max_height (int): the maximum permissible table height.
+            max_height (int): the maximum permissible table height;
+            desk_set (set): a set of desk colors.
         """
-        super().__init__(name, height, width, length, desk_set={"black", "white"})
+        super().__init__(name, height, width, length, desk_set)
         self.number_of_drawers = number_of_drawers
         self.has_keyboard_tray = has_keyboard_tray
         self.max_weight_capacity = max_weight_capacity

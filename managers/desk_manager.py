@@ -13,7 +13,7 @@ class DeskManager:
              given value.
              find_all_with_length_greater_than(value: int): finds all desks with a length greater
              than the given value.
-     """
+    """
 
     def __init__(self):
         """
@@ -63,7 +63,7 @@ class DeskManager:
                Returns:
                    list: a list of heights of all desks after moving them down by 10 centimeters.
         """
-        return [desk.move_down(centimeters=10) for desk in self.desk_list]
+        return [desk.move_down(10) for desk in self.desk_list]
 
     def enumerate_desks(self):
         """
@@ -84,7 +84,7 @@ class DeskManager:
         """
         return list(zip(self.get_height_of_desks(), self.desk_list))
 
-    def desks_higher_than(self, value) -> dict:
+    def desks_higher_than(self, value):
         """
            Checks if all or any desks have a length greater than the given value.
                Parameters:

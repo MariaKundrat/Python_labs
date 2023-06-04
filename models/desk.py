@@ -10,7 +10,8 @@ class Desk(ABC):
         name (str): the name of the desk;
         height (int): the height of the desk;
         width (int): the width of the desk;
-        length (int): the length of the desk.
+        length (int): the length of the desk;
+        desk_set (set): a set of desk colors.
 
         Methods:
         adjust_height(self, centimeters: int): an abstract method for increasing the
@@ -33,7 +34,8 @@ class Desk(ABC):
                 name (str): the name of the desk;
                 height (int): the height of the desk;
                 width (int): the width of the desk;
-                length (int): the length of the desk.
+                length (int): the length of the desk;
+                desk_set (set): a set of desk colors.
         """
         self.name = name
         self.height = height

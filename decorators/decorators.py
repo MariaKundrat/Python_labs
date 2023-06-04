@@ -20,6 +20,7 @@ def log_result_to_file(func):
             Returns:
                 callable: the decorated function.
     """
+
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
         class_name = args[0].__class__.__name__
@@ -27,6 +28,7 @@ def log_result_to_file(func):
         with open(file_name, "a", encoding="utf-8") as file:
             file.write(str(result) + os.linesep)
         return result
+
     return wrapper
 
 
@@ -46,10 +48,12 @@ def log_call_count(file_path):
             Returns:
                 callable: a decorator that takes a function as an argument and returns a decorated function.
     """
+
     def decorator(func):
         def wrapper(*args, **kwargs):
             call_counts[func.__name__] += 1
             return func(*args, **kwargs)
+
         return wrapper
 
     def read_call_counts_from_file():
@@ -65,6 +69,7 @@ def log_call_count(file_path):
         with open(file_path, 'w', encoding="utf-8") as file:
             for function_name, count in call_counts.items():
                 file.write(f"{function_name}={count}\n")
+
     read_call_counts_from_file()
     atexit.register(write_call_counts_to_file)
     return decorator

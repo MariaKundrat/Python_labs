@@ -13,7 +13,8 @@ class CoffeeTable(Desk):
         width (int): the width of the table;
         length (int): the length of the table.
         number_of_shelves (int): the number of table shelves;
-        number_of_seats (int): the number of seats that can be placed around the table.
+        number_of_seats (int): the number of seats that can be placed around the table;
+        desk_set (set): a set of desk colors.
 
         Methods:
         adjust_height(self, centimeters: int): method that does not allow to change
@@ -29,7 +30,8 @@ class CoffeeTable(Desk):
                  width: int = 0,
                  length: int = 0,
                  number_of_shelves: int = 0,
-                 number_of_seats: int = 0
+                 number_of_seats: int = 0,
+                 desk_set: set = ("brown", "gray")
                  ):
         """
            Initializes a new instance of the CoffeeTable class.
@@ -41,9 +43,10 @@ class CoffeeTable(Desk):
                 length (int): the length of the table;
                 number_of_shelves (int): the number of table shelves;
                 number_of_seats (int): the number of seats that can be placed
-                around the table.
+                around the table;
+                desk_set (set): a set of desk colors.
         """
-        super().__init__(name, height, width, length, desk_set={"brown", "gray"})
+        super().__init__(name, height, width, length, desk_set)
         self.number_of_shelves = number_of_shelves
         self.number_of_seats = number_of_seats
 
