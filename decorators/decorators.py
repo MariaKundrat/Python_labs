@@ -7,6 +7,7 @@ import logging
 call_counts = defaultdict(int)
 
 
+# pylint: disable=inconsistent-return-statements
 def log_result_to_file(func):
     """
     A decorator that logs the result of a function to a file.

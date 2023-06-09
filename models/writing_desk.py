@@ -3,6 +3,7 @@ from models.desk import Desk
 from decorators.decorators import log_result_to_file, log_call_count
 
 
+# pylint: disable = too-many-arguments
 class WritingDesk(Desk):
     """
     A class for representing a writing desk.

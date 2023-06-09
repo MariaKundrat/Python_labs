@@ -2,6 +2,7 @@
 from models.desk import Desk
 
 
+# pylint: disable = too-many-arguments
 class KitchenTable(Desk):
     """
     A class for representing a kitchen table.

@@ -4,6 +4,7 @@ from exceptions.exceptions import HeightError, CentimetersError
 from models.desk import Desk
 
 
+# pylint: disable = too-many-arguments
 class ComputerDesk(Desk):
     """
     A class for representing a computer desk.
