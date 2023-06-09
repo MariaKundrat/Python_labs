@@ -1,7 +1,10 @@
 """Import abstract class"""
+from decorators.decorators import logged
+from exceptions.exceptions import HeightError, CentimetersError
 from models.desk import Desk
 
 
+# pylint: disable = too-many-arguments
 class ComputerDesk(Desk):
     """
     A class for representing a computer desk.
@@ -53,30 +56,56 @@ class ComputerDesk(Desk):
         self.has_keyboard_tray = has_keyboard_tray
         self.max_height = max_height
 
+    @logged(CentimetersError, "console")
+    @logged(HeightError, "console")
     def adjust_height(self, centimeters):
         """
            Increases the height of the desk (if it does not exceed the maximum allowed).
                 Arguments:
                     centimeters (int): the height by which the current desk height
                     is increased.
+                Raises:
+                    CentimetersError: If `centimeters` is not an integer or is less than 0.
+                    HeightError: If increasing the height by `centimeters` would cause it to exceed
+                    `max_height`.
         """
+        if not isinstance(centimeters, int):
+            raise CentimetersError("Centimeters must be an integer")
+        if centimeters < 0:
+            raise CentimetersError("Centimeters must be a positive integer")
         if self.height + centimeters <= self.max_height:
             self.height += centimeters
+        else:
+            raise HeightError(f"Cannot increase height above {self.max_height}")
+        print(f"New height: {self.height}")
         return self.height
 
+    @logged(CentimetersError, "console")
+    @logged(HeightError, "console")
     def move_down(self, centimeters):
         """
            Reduces the height of the desk (it cannot be less than 0).
                 Arguments:
                     centimeters (int): the height by which the current table height
                     is reduced.
+                Raises:
+                    CentimetersError: If `centimeters` is not an integer or is less than 0.
+                    HeightError: If decreasing the height by `centimeters` would cause it to
+                    go below 0.
         """
+        if not isinstance(centimeters, int):
+            raise CentimetersError("Centimeters must be an integer")
+        if centimeters < 0:
+            raise CentimetersError("Centimeters must be a positive integer")
         if self.height - centimeters >= 0:
             self.height -= centimeters
+        else:
+            raise HeightError(f"Cannot reduce height above {self.max_height}")
+        print(f"New height: {self.height}")
         return self.height
 
     def __str__(self):
         return f"ComputerDesk(name={self.name}, height={self.height}, width={self.width}," \
                f"length={self.length}, number_of_drawers={self.number_of_drawers}, " \
-               f"has_keyboard_tray={self.has_keyboard_tray}, max_height={self.max_height}," \
+               f"has_keyboard_tray={self.has_keyboard_tray}, max_height={self.max_height}, " \
                f"desk_set={self.desk_set})"

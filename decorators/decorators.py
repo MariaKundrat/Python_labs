@@ -2,10 +2,12 @@
 import os
 from collections import defaultdict
 import atexit
+import logging
 
 call_counts = defaultdict(int)
 
 
+# pylint: disable=inconsistent-return-statements
 def log_result_to_file(func):
     """
     A decorator that logs the result of a function to a file.
@@ -46,7 +48,8 @@ def log_call_count(file_path):
                 file_path (str): path to file where call counts will be stored.
 
             Returns:
-                callable: a decorator that takes a function as an argument and returns a decorated function.
+                callable: a decorator that takes a function as an argument and returns a decorated
+                function.
     """
 
     def decorator(func):
@@ -72,4 +75,37 @@ def log_call_count(file_path):
 
     read_call_counts_from_file()
     atexit.register(write_call_counts_to_file)
+    return decorator
+
+
+def logged(exception, mode):
+    """
+        A decorator that logs exceptions raised by a function.
+
+            The decorator logs exceptions to the specified type raised by the function to either the
+            console or a file, depending on the value of `mode`.
+
+                Parameters:
+                    exception (type): the type of exception to log.
+                    mode (str): where to log the exception ("console" or "file").
+
+                Returns:
+                    callable: a decorator that takes a function as an argument and returns a
+                    decorated function.
+    """
+
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except exception as ex:
+                if mode == "console":
+                    logging.basicConfig(level=logging.ERROR)
+                    logging.error(ex)
+                elif mode == "file":
+                    logging.basicConfig(filename="error.log", level=logging.ERROR)
+                    logging.error(ex)
+
+        return wrapper
+
     return decorator

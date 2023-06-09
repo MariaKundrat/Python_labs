@@ -3,6 +3,7 @@ from models.desk import Desk
 from decorators.decorators import log_result_to_file, log_call_count
 
 
+# pylint: disable = too-many-arguments
 class WritingDesk(Desk):
     """
     A class for representing a writing desk.
@@ -82,8 +83,8 @@ class WritingDesk(Desk):
         return self.height
 
     def __str__(self):
-        return f"WritingDesk(name={self.name}, height={self.height}, width={self.width}," \
+        return f"WritingDesk(name={self.name}, height={self.height}, width={self.width}, " \
                f"length={self.length}, number_of_drawers={self.number_of_drawers}, " \
                f"has_keyboard_tray={self.has_keyboard_tray}, " \
-               f"max_weight_capacity={self.max_weight_capacity}, max_height={self.max_height}," \
+               f"max_weight_capacity={self.max_weight_capacity}, max_height={self.max_height}, " \
                f"desk_set={self.desk_set})"

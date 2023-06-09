@@ -19,6 +19,9 @@ if __name__ == "__main__":
         KitchenTable()
     ]
 
+    desk_list[4].adjust_height(10)
+    desk_list[4].move_down(10)
+
     for desk in desk_list:
         desk_manager.add_desk(desk)
 

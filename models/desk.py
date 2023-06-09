@@ -2,6 +2,7 @@
 from abc import ABC, abstractmethod
 
 
+# pylint: disable = too-many-arguments
 class Desk(ABC):
     """
     An abstract base class for representing a desk.
